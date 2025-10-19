@@ -1,5 +1,5 @@
 
-const { protect } = require('../middleware/authMiddleware');
+
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 
