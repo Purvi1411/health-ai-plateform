@@ -2,15 +2,17 @@ const dotenv = require('dotenv');
 const connectDB = require('./config/db');
 const userRoutes = require('./routes/userRoutes');
 const symptomRoutes = require('./routes/symptomRoutes');
+const cors = require('cors');
 dotenv.config();
 connectDB();
 const express = require('express');
 
 const app = express();
-const PORT = 5003;
+const PORT = 5004;
 
 // Middleware to parse JSON bodies
 app.use(express.json());
+app.use(cors());
 
 // Use the user routes for any URL starting with /api/users
 app.use('/api/users', userRoutes);
