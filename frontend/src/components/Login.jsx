@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom'; // We'll use this to redirect
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext'; // <-- 1. IMPORT USEAUTH
 
 function Login() {
   const [formData, setFormData] = useState({
@@ -8,7 +9,8 @@ function Login() {
     password: '',
   });
 
-  const navigate = useNavigate(); // Get the redirect function
+  const { login } = useAuth(); // <-- 2. GET THE LOGIN FUNCTION
+  const navigate = useNavigate();
 
   const onChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -18,21 +20,18 @@ function Login() {
     e.preventDefault();
     try {
       const response = await axios.post(
-        'http://localhost:5004/api/users/login', // Make sure this port is correct!
+        'http://localhost:5004/api/users/login', // <-- Use port 5004 (or your current port)
         formData
       );
 
-      // SUCCESS! We got a token.
-      console.log('Login successful:', response.data);
-
-      // Store the user's data (and token) in localStorage
-      localStorage.setItem('user', JSON.stringify(response.data));
+      // 3. CALL THE CONTEXT LOGIN FUNCTION
+      // This saves the user to state AND localStorage
+      login(response.data);
 
       alert('Login successful! Welcome back.');
 
-      // Redirect to the homepage (which will be our dashboard)
+      // 4. Redirect to the homepage
       navigate('/');
-
     } catch (error) {
       console.error('Login error:', error.response.data.message);
       alert('Error: ' + error.response.data.message);
@@ -40,7 +39,7 @@ function Login() {
   };
 
   return (
-    <div className="register-container"> {/* We can reuse the same style */}
+    <div className="register-container">
       <h2>Login to Your Account</h2>
       <form onSubmit={onSubmit}>
         <div className="form-group">

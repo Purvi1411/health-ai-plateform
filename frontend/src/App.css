@@ -40,3 +40,17 @@ nav a:hover {
 main {
   padding: 20px;
 }
+/* ADD THESE STYLES TO THE BOTTOM OF App.css */
+.logout-button {
+  background: none;
+  border: none;
+  color: white;
+  text-decoration: none;
+  padding: 0 15px;
+  font-family: inherit;
+  font-size: inherit;
+  cursor: pointer;
+}
+.logout-button:hover {
+  text-decoration: underline;
+}
