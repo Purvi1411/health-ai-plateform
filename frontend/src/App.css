@@ -21,3 +21,22 @@
   padding: 8px;
   box-sizing: border-box; /* Important! */
 }
+/* Add these to your App.css */
+nav {
+  background-color: #333;
+  padding: 10px;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  padding: 0 15px;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+main {
+  padding: 20px;
+}
