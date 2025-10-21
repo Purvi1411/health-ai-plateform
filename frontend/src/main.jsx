@@ -7,6 +7,7 @@ import Register from './components/Register.jsx';
 import Login from './components/Login.jsx';
 import Dashboard from './components/Dashboard.jsx'; // <-- 1. IMPORT
 import ProtectedRoute from './components/ProtectRoute.jsx'; // <-- 2. IMPORT
+import SymptomHistory from './components/SymptomHistory.jsx';
 import './index.css';
 
 const router = createBrowserRouter([
@@ -22,6 +23,14 @@ const router = createBrowserRouter([
           </ProtectedRoute>
         ) 
       },
+      {
+    path: '/history',
+    element: (
+      <ProtectedRoute>
+        <SymptomHistory />
+      </ProtectedRoute>
+    )
+  },
       { path: '/register', element: <Register /> },
       { path: '/login', element: <Login /> },
     ],
